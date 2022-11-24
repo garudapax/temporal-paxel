@@ -150,7 +150,7 @@ items:
           containers:
             - env:
                 - name: DB
-                  value: temporal
+                  value: postgresql
                 - name: DB_PORT
                   value: "5432"
                 - name: DYNAMIC_CONFIG_FILE_PATH
