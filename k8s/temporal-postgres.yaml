@@ -10,6 +10,7 @@ items:
       labels:
         io.kompose.service: postgresql
       name: postgresql
+      namespace: qa
     spec:
       ports:
         - name: "5432"
@@ -30,6 +31,7 @@ items:
       labels:
         io.kompose.service: temporal
       name: temporal
+      namespace: qa
     spec:
       ports:
         - name: "7233"
@@ -49,6 +51,7 @@ items:
       labels:
         io.kompose.service: temporal-web
       name: temporal-web
+      namespace: qa
     spec:
       ports:
         - name: "8088"
@@ -68,6 +71,7 @@ items:
       labels:
         io.kompose.service: postgresql
       name: postgresql
+      namespace: qa
     spec:
       replicas: 1
       selector:
@@ -87,9 +91,9 @@ items:
           containers:
             - env:
                 - name: POSTGRES_PASSWORD
-                  value: temporal
+                  value: Pax3LdbP455W0rdMasuk123
                 - name: POSTGRES_USER
-                  value: temporal
+                  value: PaxelU5312N4m3
               image: postgres:13
               name: temporal-postgresql
               ports:
@@ -103,6 +107,7 @@ items:
     metadata:
       creationTimestamp: null
       name: temporal-network
+      namespace: qa
     spec:
       ingress:
         - from:
@@ -123,6 +128,7 @@ items:
       labels:
         io.kompose.service: temporal
       name: temporal
+      namespace: qa
     spec:
       replicas: 1
       selector:
@@ -230,6 +236,7 @@ items:
       labels:
         io.kompose.service: temporal
       name: temporal-cm0
+      namespace: qa
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -240,6 +247,7 @@ items:
       labels:
         io.kompose.service: temporal-admin-tools
       name: temporal-admin-tools
+      namespace: qa
     spec:
       replicas: 1
       selector:
@@ -278,6 +286,7 @@ items:
       labels:
         io.kompose.service: temporal-web
       name: temporal-web
+      namespace: qa
     spec:
       replicas: 1
       selector:
