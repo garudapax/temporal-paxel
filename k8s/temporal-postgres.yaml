@@ -3,7 +3,7 @@ items:
   - apiVersion: v1
     kind: Service
     metadata:
-      namespace: temporal
+      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -23,7 +23,7 @@ items:
   - apiVersion: v1
     kind: Service
     metadata:
-      namespace: temporal
+      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -44,7 +44,7 @@ items:
   - apiVersion: v1
     kind: Service
     metadata:
-      namespace: temporal
+      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -64,7 +64,7 @@ items:
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
-      namespace: temporal
+      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -80,7 +80,7 @@ items:
       strategy: {}
       template:
         metadata:
-          namespace: temporal
+          namespace: qa
           annotations:
             kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
@@ -106,7 +106,7 @@ items:
   - apiVersion: networking.k8s.io/v1
     kind: NetworkPolicy
     metadata:
-      namespace: temporal
+      namespace: qa
       creationTimestamp: null
       name: temporal-network
     spec:
@@ -121,7 +121,7 @@ items:
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
-      namespace: temporal
+      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -139,7 +139,7 @@ items:
         type: Recreate
       template:
         metadata:
-          namespace: temporal
+          namespace: qa
           annotations:
             kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
@@ -232,7 +232,7 @@ items:
       docker.yaml: ""
     kind: ConfigMap
     metadata:
-      namespace: temporal
+      namespace: qa
       creationTimestamp: null
       labels:
         io.kompose.service: temporal
@@ -240,7 +240,7 @@ items:
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
-      namespace: temporal
+      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -256,7 +256,7 @@ items:
       strategy: {}
       template:
         metadata:
-          namespace: temporal
+          namespace: qa
           annotations:
             kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
@@ -280,7 +280,7 @@ items:
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
-      namespace: temporal
+      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -296,7 +296,7 @@ items:
       strategy: {}
       template:
         metadata:
-          namespace: temporal
+          namespace: qa
           annotations:
             kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
@@ -321,4 +321,4 @@ items:
     status: {}
 kind: List
 metadata: {}
-namespace: temporal
+namespace: qa
