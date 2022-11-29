@@ -9,15 +9,15 @@ items:
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
-        io.kompose.service: postgresqlqa
-      name: postgresqlqa
+        io.kompose.service: postgresql
+      name: postgresql
     spec:
       ports:
         - name: "5432"
           port: 5432
           targetPort: 5432
       selector:
-        io.kompose.service: postgresqlqa
+        io.kompose.service: postgresql
     status:
       loadBalancer: {}
   - apiVersion: v1
@@ -70,13 +70,13 @@ items:
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
-        io.kompose.service: postgresqlqa
-      name: postgresqlqa
+        io.kompose.service: postgresql
+      name: postgresql
     spec:
       replicas: 1
       selector:
         matchLabels:
-          io.kompose.service: postgresqlqa
+          io.kompose.service: postgresql
       strategy: {}
       template:
         metadata:
@@ -87,7 +87,7 @@ items:
           creationTimestamp: null
           labels:
             io.kompose.network/temporal-network: "true"
-            io.kompose.service: postgresqlqa
+            io.kompose.service: postgresql
         spec:
           containers:
             - env:
@@ -96,7 +96,7 @@ items:
                 - name: POSTGRES_USER
                   value: PaxelU5312N4m3
               image: postgres:13
-              name: temporal-postgresqlqa
+              name: temporal-postgresql
               ports:
                 - containerPort: 5432
               resources: {}
@@ -152,7 +152,7 @@ items:
           containers:
             - env:
                 - name: DB
-                  value: postgresqlqa
+                  value: postgresql
                 - name: DB_PORT
                   value: "5432"
                 - name: DYNAMIC_CONFIG_FILE_PATH
@@ -160,7 +160,7 @@ items:
                 - name: POSTGRES_PWD
                   value: Pax3LdbP455W0rdMasuk123
                 - name: POSTGRES_SEEDS
-                  value: postgresqlqa
+                  value: postgresql
                 - name: POSTGRES_USER
                   value: PaxelU5312N4m3
               image: temporalio/auto-setup:1.17.1
