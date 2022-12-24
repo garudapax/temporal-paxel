@@ -5,7 +5,9 @@ items:
     metadata:
       namespace: qa
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+        kompose.cmd: >-
+          kompose convert -f docker-compose-postgres.yml -o
+          k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
@@ -13,7 +15,7 @@ items:
       name: postgresql
     spec:
       ports:
-        - name: "5432"
+        - name: '5432'
           port: 5432
           targetPort: 5432
       selector:
@@ -25,7 +27,9 @@ items:
     metadata:
       namespace: qa
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+        kompose.cmd: >-
+          kompose convert -f docker-compose-postgres.yml -o
+          k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
         kompose.volume.type: configMap
       creationTimestamp: null
@@ -34,7 +38,7 @@ items:
       name: temporal
     spec:
       ports:
-        - name: "7233"
+        - name: '7233'
           port: 7233
           targetPort: 7233
       selector:
@@ -46,7 +50,9 @@ items:
     metadata:
       namespace: qa
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+        kompose.cmd: >-
+          kompose convert -f docker-compose-postgres.yml -o
+          k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
@@ -54,7 +60,7 @@ items:
       name: temporal-web
     spec:
       ports:
-        - name: "8088"
+        - name: '8088'
           port: 8088
           targetPort: 8088
       selector:
@@ -66,7 +72,9 @@ items:
     metadata:
       namespace: qa
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+        kompose.cmd: >-
+          kompose convert -f docker-compose-postgres.yml -o
+          k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
@@ -82,11 +90,13 @@ items:
         metadata:
           namespace: qa
           annotations:
-            kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+            kompose.cmd: >-
+              kompose convert -f docker-compose-postgres.yml -o
+              k8s/temporal-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
           creationTimestamp: null
           labels:
-            io.kompose.network/temporal-network: "true"
+            io.kompose.network/temporal-network: 'true'
             io.kompose.service: postgresql
         spec:
           containers:
@@ -95,7 +105,7 @@ items:
                   value: temporal
                 - name: POSTGRES_USER
                   value: temporal
-              image: postgres:13
+              image: 'postgres:13'
               name: temporal-postgresql
               ports:
                 - containerPort: 5432
@@ -104,9 +114,9 @@ items:
                   mountPath: /var/lib/postgresql/data
                   subPath: data
           volumes:
-                - name: temporal-pv-claim
-                  persistentVolumeClaim:
-                    claimName: temporal-pv-claim
+            - name: temporal-pv-claim
+              persistentVolumeClaim:
+                claimName: temporal-pv-claim
           resources: {}
           restartPolicy: Always
           enableServiceLinks: false
@@ -122,16 +132,18 @@ items:
         - from:
             - podSelector:
                 matchLabels:
-                  io.kompose.network/temporal-network: "true"
+                  io.kompose.network/temporal-network: 'true'
       podSelector:
         matchLabels:
-          io.kompose.network/temporal-network: "true"
+          io.kompose.network/temporal-network: 'true'
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
       namespace: qa
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+        kompose.cmd: >-
+          kompose convert -f docker-compose-postgres.yml -o
+          k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
         kompose.volume.type: configMap
       creationTimestamp: null
@@ -149,12 +161,14 @@ items:
         metadata:
           namespace: qa
           annotations:
-            kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+            kompose.cmd: >-
+              kompose convert -f docker-compose-postgres.yml -o
+              k8s/temporal-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
             kompose.volume.type: configMap
           creationTimestamp: null
           labels:
-            io.kompose.network/temporal-network: "true"
+            io.kompose.network/temporal-network: 'true'
             io.kompose.service: temporal
         spec:
           containers:
@@ -162,7 +176,7 @@ items:
                 - name: DB
                   value: postgresql
                 - name: DB_PORT
-                  value: "5432"
+                  value: '5432'
                 - name: DYNAMIC_CONFIG_FILE_PATH
                   value: config/dynamicconfig/development-sql.yaml
                 - name: POSTGRES_PWD
@@ -171,7 +185,7 @@ items:
                   value: postgresql
                 - name: POSTGRES_USER
                   value: temporal
-              image: temporalio/auto-setup:1.17.1
+              image: 'temporalio/auto-setup:1.17.1'
               name: temporal
               ports:
                 - containerPort: 7233
@@ -188,18 +202,33 @@ items:
     status: {}
   - apiVersion: v1
     data:
-      README.md: |
-        Use `docker.yaml` file to override the default dynamic config value (they are specified
+      README.md: >
+        Use `docker.yaml` file to override the default dynamic config value
+        (they are specified
+
         when creating the service config).
-        Each key can have zero or more values and each value can have zero or more
+
+        Each key can have zero or more values and each value can have zero or
+        more
+
         constraints. There are only three types of constraint:
+
         1. `namespace`: `string`
+
         2. `taskQueueName`: `string`
+
         3. `taskType`: `int` (`1`:`Workflow`, `2`:`Activity`)
-        A value will be selected and returned if all its has exactly the same constraints
-        as the ones specified in query filters (including the number of constraints).
+
+        A value will be selected and returned if all its has exactly the same
+        constraints
+
+        as the ones specified in query filters (including the number of
+        constraints).
+
         Please use the following format:
+
         ```
+
         testGetBoolPropertyKey:
           - value: false
           - value: true
@@ -237,7 +266,7 @@ items:
         system.forceSearchAttributesCacheRefreshOnRead:
           - value: true # Dev setup only. Please don't turn this on in production.
             constraints: {}
-      docker.yaml: ""
+      docker.yaml: ''
     kind: ConfigMap
     metadata:
       namespace: qa
@@ -250,7 +279,9 @@ items:
     metadata:
       namespace: qa
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+        kompose.cmd: >-
+          kompose convert -f docker-compose-postgres.yml -o
+          k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
@@ -266,18 +297,20 @@ items:
         metadata:
           namespace: qa
           annotations:
-            kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+            kompose.cmd: >-
+              kompose convert -f docker-compose-postgres.yml -o
+              k8s/temporal-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
           creationTimestamp: null
           labels:
-            io.kompose.network/temporal-network: "true"
+            io.kompose.network/temporal-network: 'true'
             io.kompose.service: temporal-admin-tools
         spec:
           containers:
             - env:
                 - name: TEMPORAL_CLI_ADDRESS
-                  value: temporal:7233
-              image: temporalio/admin-tools:1.17.1
+                  value: 'temporal:7233'
+              image: 'temporalio/admin-tools:1.17.1'
               name: temporal-admin-tools
               resources: {}
               stdin: true
@@ -290,7 +323,9 @@ items:
     metadata:
       namespace: qa
       annotations:
-        kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+        kompose.cmd: >-
+          kompose convert -f docker-compose-postgres.yml -o
+          k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
@@ -306,20 +341,22 @@ items:
         metadata:
           namespace: qa
           annotations:
-            kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
+            kompose.cmd: >-
+              kompose convert -f docker-compose-postgres.yml -o
+              k8s/temporal-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
           creationTimestamp: null
           labels:
-            io.kompose.network/temporal-network: "true"
+            io.kompose.network/temporal-network: 'true'
             io.kompose.service: temporal-web
         spec:
           containers:
             - env:
                 - name: TEMPORAL_GRPC_ENDPOINT
-                  value: temporal:7233
+                  value: 'temporal:7233'
                 - name: TEMPORAL_PERMIT_WRITE_API
-                  value: "true"
-              image: temporalio/web:1.15.0
+                  value: 'true'
+              image: 'temporalio/web:1.15.0'
               name: temporal-web
               ports:
                 - containerPort: 8088
