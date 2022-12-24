@@ -185,6 +185,8 @@ items:
           enableServiceLinks: false
     status: {}
   - apiVersion: v1
+    metadata:
+      namespace: qa
     data:
       README.md: |
         Use `docker.yaml` file to override the default dynamic config value (they are specified
