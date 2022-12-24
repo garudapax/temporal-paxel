@@ -174,7 +174,7 @@ items:
                 - name: POSTGRES_PWD
                   value: temporal-preprod
                 - name: POSTGRES_SEEDS
-                  value: postgresql-preprod
+                  value: postgresql
                 - name: POSTGRES_USER
                   value: temporal-preprod
               image: "temporalio/auto-setup:1.17.1"
