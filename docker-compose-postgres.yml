@@ -17,10 +17,10 @@ services:
     depends_on:
       - postgresql
     environment:
-      - POSTGRES_DB=postgresql
+      - DB=postgresql
       - DB_PORT=5432
       - POSTGRES_USER=temporal
-      - POSTGRES_PASSWORD=temporal
+      - POSTGRES_PWD=temporal
       - POSTGRES_SEEDS=postgresql
       - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
     image: temporalio/auto-setup:${TEMPORAL_VERSION}
