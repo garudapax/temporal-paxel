@@ -166,7 +166,7 @@ items:
           containers:
             - env:
                 - name: DB
-                  value: postgresql-preprod
+                  value: postgresql
                 - name: DB_PORT
                   value: "5432"
                 - name: DYNAMIC_CONFIG_FILE_PATH
