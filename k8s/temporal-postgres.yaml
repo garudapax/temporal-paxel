@@ -97,13 +97,13 @@ items:
         spec:
           containers:
             - env:
-                - name: DB
+                - name: POSTGRES_DB
                   value: postgresql
                 - name: DB_PORT
                   value: '5432'
                 - name: DYNAMIC_CONFIG_FILE_PATH
                   value: config/dynamicconfig/development-sql.yaml
-                - name: POSTGRES_PWD
+                - name: POSTGRES_PASSWORD
                   value: temporal
                 - name: POSTGRES_SEEDS
                   value: postgresql
