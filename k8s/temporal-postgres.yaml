@@ -92,14 +92,22 @@ items:
           containers:
             - env:
                 - name: POSTGRES_PASSWORD
-                  value: Pax3LdbP455W0rdMasuk123
+                  value: temporal
                 - name: POSTGRES_USER
-                  value: PaxelU5312N4m3
+                  value: temporal
               image: postgres:13
               name: temporal-postgresql
               ports:
                 - containerPort: 5432
-              resources: {}
+              volumeMounts:
+                - name: temporal-pv-claim
+                  mountPath: /var/lib/postgresql/data
+                  subPath: data
+          volumes:
+                - name: temporal-pv-claim
+                  persistentVolumeClaim:
+                    claimName: temporal-pv-claim
+          resources: {}
           restartPolicy: Always
           enableServiceLinks: false
     status: {}
@@ -158,11 +166,11 @@ items:
                 - name: DYNAMIC_CONFIG_FILE_PATH
                   value: config/dynamicconfig/development-sql.yaml
                 - name: POSTGRES_PWD
-                  value: Pax3LdbP455W0rdMasuk123
+                  value: temporal
                 - name: POSTGRES_SEEDS
                   value: postgresql
                 - name: POSTGRES_USER
-                  value: PaxelU5312N4m3
+                  value: temporal
               image: temporalio/auto-setup:1.17.1
               name: temporal
               ports:
