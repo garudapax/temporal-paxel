@@ -177,7 +177,7 @@ items:
                   value: postgresql-preprod
                 - name: POSTGRES_USER
                   value: temporal-preprod
-              image: "temporal-preprodio/auto-setup:1.17.1"
+              image: "temporalio/auto-setup:1.17.1"
               name: temporal-preprod
               ports:
                 - containerPort: 7233
