@@ -9,28 +9,6 @@ items:
           kompose convert -f docker-compose-postgres.yml -o
           k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
-      creationTimestamp: null
-      labels:
-        io.kompose.service: postgresql
-      name: postgresql
-    spec:
-      ports:
-        - name: '5432'
-          port: 5432
-          targetPort: 5432
-      selector:
-        io.kompose.service: postgresql
-    status:
-      loadBalancer: {}
-  - apiVersion: v1
-    kind: Service
-    metadata:
-      namespace: qa
-      annotations:
-        kompose.cmd: >-
-          kompose convert -f docker-compose-postgres.yml -o
-          k8s/temporal-postgres.yaml
-        kompose.version: 1.26.1 (1b040dd2)
         kompose.volume.type: configMap
       creationTimestamp: null
       labels:
@@ -67,59 +45,6 @@ items:
         io.kompose.service: temporal-web
     status:
       loadBalancer: {}
-  - apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      namespace: qa
-      annotations:
-        kompose.cmd: >-
-          kompose convert -f docker-compose-postgres.yml -o
-          k8s/temporal-postgres.yaml
-        kompose.version: 1.26.1 (1b040dd2)
-      creationTimestamp: null
-      labels:
-        io.kompose.service: postgresql
-      name: postgresql
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          io.kompose.service: postgresql
-      strategy: {}
-      template:
-        metadata:
-          namespace: qa
-          annotations:
-            kompose.cmd: >-
-              kompose convert -f docker-compose-postgres.yml -o
-              k8s/temporal-postgres.yaml
-            kompose.version: 1.26.1 (1b040dd2)
-          creationTimestamp: null
-          labels:
-            io.kompose.network/temporal-network: 'true'
-            io.kompose.service: postgresql
-        spec:
-          containers:
-            - env:
-                - name: POSTGRES_PASSWORD
-                  value: temporal
-                - name: POSTGRES_USER
-                  value: temporal
-              image: 'postgres:13'
-              name: temporal-postgresql
-              ports:
-                - containerPort: 5432
-              volumeMounts:
-                - name: temporal-pv-claim
-                  mountPath: /var/lib/postgresql/data
-                  subPath: data
-          volumes:
-            - name: temporal-pv-claim
-              persistentVolumeClaim:
-                claimName: temporal-pv-claim
-          restartPolicy: Always
-          enableServiceLinks: false
-    status: {}
   - apiVersion: networking.k8s.io/v1
     kind: NetworkPolicy
     metadata:
