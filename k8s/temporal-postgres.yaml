@@ -3,7 +3,6 @@ items:
   - apiVersion: v1
     kind: Service
     metadata:
-      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -23,7 +22,6 @@ items:
   - apiVersion: v1
     kind: Service
     metadata:
-      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -44,7 +42,6 @@ items:
   - apiVersion: v1
     kind: Service
     metadata:
-      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -64,7 +61,6 @@ items:
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
-      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -99,21 +95,12 @@ items:
               ports:
                 - containerPort: 5432
               resources: {}
-              volumeMounts:
-                - name: temporal-pv-claim
-                  mountPath: /var/lib/postgresql
-                  subPath: data
-          volumes:
-            - name: temporal-pv-claim
-              persistentVolumeClaim:
-                claimName: temporal-pv-claim
           restartPolicy: Always
           enableServiceLinks: false
     status: {}
   - apiVersion: networking.k8s.io/v1
     kind: NetworkPolicy
     metadata:
-      namespace: qa
       creationTimestamp: null
       name: temporal-network
     spec:
@@ -128,7 +115,6 @@ items:
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
-      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -185,12 +171,11 @@ items:
           enableServiceLinks: false
     status: {}
   - apiVersion: v1
-    metadata:
-      namespace: qa
     data:
       README.md: |
         Use `docker.yaml` file to override the default dynamic config value (they are specified
         when creating the service config).
+
         Each key can have zero or more values and each value can have zero or more
         constraints. There are only three types of constraint:
         1. `namespace`: `string`
@@ -198,6 +183,7 @@ items:
         3. `taskType`: `int` (`1`:`Workflow`, `2`:`Activity`)
         A value will be selected and returned if all its has exactly the same constraints
         as the ones specified in query filters (including the number of constraints).
+
         Please use the following format:
         ```
         testGetBoolPropertyKey:
@@ -247,7 +233,6 @@ items:
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
-      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
@@ -286,7 +271,6 @@ items:
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
-      namespace: qa
       annotations:
         kompose.cmd: kompose convert -f docker-compose-postgres.yml -o k8s/temporal-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
