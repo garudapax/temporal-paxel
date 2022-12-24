@@ -117,7 +117,6 @@ items:
             - name: temporal-pv-claim
               persistentVolumeClaim:
                 claimName: temporal-pv-claim
-          resources: {}
           restartPolicy: Always
           enableServiceLinks: false
     status: {}
@@ -189,7 +188,6 @@ items:
               name: temporal
               ports:
                 - containerPort: 7233
-              resources: {}
               volumeMounts:
                 - mountPath: /etc/temporal/config/dynamicconfig
                   name: temporal-cm0
@@ -312,7 +310,6 @@ items:
                   value: 'temporal:7233'
               image: 'temporalio/admin-tools:1.17.1'
               name: temporal-admin-tools
-              resources: {}
               stdin: true
               tty: true
           restartPolicy: Always
@@ -360,7 +357,6 @@ items:
               name: temporal-web
               ports:
                 - containerPort: 8088
-              resources: {}
           restartPolicy: Always
           enableServiceLinks: false
     status: {}
