@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: temporal-preprod-web-ingress
+  name: preprod-temporal-web-ingress
   namespace: default
   annotations:
     # If the class annotation is not specified it qas to "gce".
@@ -19,7 +19,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: temporal-preprod-web
+            name: preprod-temporal-web
             port:
               number: 8088
   tls:
