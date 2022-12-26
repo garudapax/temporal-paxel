@@ -95,7 +95,7 @@ items:
                   value: temporal
                 - name: POSTGRES_USER
                   value: temporal
-              image: "postgres:13"
+              image: "us.gcr.io/dev-qa-project-328909/paxel/temporal/preprod-postgres:13"
               name: preprod-postgresql
               ports:
                 - containerPort: 5432
@@ -170,7 +170,7 @@ items:
                   value: postgresql
                 - name: POSTGRES_USER
                   value: temporal
-              image: "temporalio/auto-setup:1.17.1"
+              image: "us.gcr.io/dev-qa-project-328909/paxel/temporal/preprod-auto-setup:1.17.1"
               name: preprod-temporal
               ports:
                 - containerPort: 7233
@@ -292,7 +292,7 @@ items:
             - env:
                 - name: TEMPORAL_CLI_ADDRESS
                   value: "preprod-temporal:7233"
-              image: "temporalio/admin-tools:1.17.1"
+              image: "us.gcr.io/dev-qa-project-328909/paxel/temporal/preprod-admin-tools:1.17.1"
               name: preprod-temporal-admin-tools
               resources: {}
               stdin: true
@@ -334,7 +334,7 @@ items:
                   value: "preprod-temporal:7233"
                 - name: TEMPORAL_PERMIT_WRITE_API
                   value: "true"
-              image: "temporalio/web:1.15.0"
+              image: "us.gcr.io/dev-qa-project-328909/paxel/temporal/preprod-web:1.15.0"
               name: preprod-temporal-web
               ports:
                 - containerPort: 8088
