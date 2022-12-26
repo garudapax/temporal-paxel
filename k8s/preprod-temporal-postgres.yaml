@@ -159,7 +159,7 @@ items:
           containers:
             - env:
                 - name: DB
-                  value: postgresql
+                  value: preprod-postgresql
                 - name: DB_PORT
                   value: "5432"
                 - name: DYNAMIC_CONFIG_FILE_PATH
@@ -167,7 +167,7 @@ items:
                 - name: POSTGRES_PWD
                   value: temporal
                 - name: POSTGRES_SEEDS
-                  value: postgresql
+                  value: preprod-postgresql
                 - name: POSTGRES_USER
                   value: temporal
               image: "us.gcr.io/dev-qa-project-328909/paxel/temporal/preprod-auto-setup:1.17.1"
