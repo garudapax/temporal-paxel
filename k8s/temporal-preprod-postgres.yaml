@@ -5,8 +5,7 @@ items:
     metadata:
       annotations:
         kompose.cmd: >-
-          kompose convert -f docker-compose-postgres.yml -o
-          k8s/temporal-preprod-postgres.yaml
+          kompose convert -f docker-compose-postgres.yml -o k8s/temporal-preprod-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
@@ -26,8 +25,7 @@ items:
     metadata:
       annotations:
         kompose.cmd: >-
-          kompose convert -f docker-compose-postgres.yml -o
-          k8s/temporal-preprod-postgres.yaml
+          kompose convert -f docker-compose-postgres.yml -o k8s/temporal-preprod-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
         kompose.volume.type: configMap
       creationTimestamp: null
@@ -48,8 +46,7 @@ items:
     metadata:
       annotations:
         kompose.cmd: >-
-          kompose convert -f docker-compose-postgres.yml -o
-          k8s/temporal-preprod-postgres.yaml
+          kompose convert -f docker-compose-postgres.yml -o k8s/temporal-preprod-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
@@ -69,8 +66,7 @@ items:
     metadata:
       annotations:
         kompose.cmd: >-
-          kompose convert -f docker-compose-postgres.yml -o
-          k8s/temporal-preprod-postgres.yaml
+          kompose convert -f docker-compose-postgres.yml -o k8s/temporal-preprod-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
@@ -86,8 +82,7 @@ items:
         metadata:
           annotations:
             kompose.cmd: >-
-              kompose convert -f docker-compose-postgres.yml -o
-              k8s/temporal-preprod-postgres.yaml
+              kompose convert -f docker-compose-postgres.yml -o k8s/temporal-preprod-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
           creationTimestamp: null
           labels:
@@ -135,8 +130,7 @@ items:
     metadata:
       annotations:
         kompose.cmd: >-
-          kompose convert -f docker-compose-postgres.yml -o
-          k8s/temporal-preprod-postgres.yaml
+          kompose convert -f docker-compose-postgres.yml -o k8s/temporal-preprod-postgres.yaml
         kompose.version: 1.26.1 (1b040dd2)
         kompose.volume.type: configMap
       creationTimestamp: null
@@ -154,8 +148,7 @@ items:
         metadata:
           annotations:
             kompose.cmd: >-
-              kompose convert -f docker-compose-postgres.yml -o
-              k8s/temporal-preprod-postgres.yaml
+              kompose convert -f docker-compose-postgres.yml -o k8s/temporal-preprod-postgres.yaml
             kompose.version: 1.26.1 (1b040dd2)
             kompose.volume.type: configMap
           creationTimestamp: null
