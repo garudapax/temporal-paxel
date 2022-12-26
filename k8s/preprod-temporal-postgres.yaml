@@ -96,7 +96,7 @@ items:
                 - name: POSTGRES_USER
                   value: temporal
               image: "postgres:13"
-              name: preprod-temporal-postgresql
+              name: preprod-postgresql
               ports:
                 - containerPort: 5432
               resources: {}
