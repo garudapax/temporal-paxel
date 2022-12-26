@@ -16,7 +16,7 @@ spec:
     - hard
     - nfsvers=4.1
   nfs:
-    path: /opt/Preprod/deploy-src/postgressdb
+    path: /opt/Preprod/deploy-src/preprod-temporal-postgress
     server: 10.201.2.2
 
 ---
