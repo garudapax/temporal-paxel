@@ -95,6 +95,14 @@ items:
               ports:
                 - containerPort: 5432
               resources: {}
+              volumeMounts:
+                - name: temporal-pv-preprod-claim
+                  mountPath: /var/lib/postgresql/data
+              workingDir: /var/lib/postgresql/data
+          volumes:
+            - name: temporal-pv-preprod-claim
+              persistentVolumeClaim:
+                claimName: temporal-pv-preprod-claim
           restartPolicy: Always
           enableServiceLinks: false
     status: {}
