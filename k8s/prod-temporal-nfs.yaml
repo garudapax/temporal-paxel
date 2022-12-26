@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   namespace: default
-  name: temporal-pv-preprod
+  name: temporal-pv-prod
 spec:
   capacity:
     storage: 30Gi
@@ -16,7 +16,7 @@ spec:
     - hard
     - nfsvers=4.1
   nfs:
-    path: /data/preprod-temporal-postgress
+    path: /data/prod-temporal-postgress
     server: 10.205.2.9
 
 ---
@@ -24,7 +24,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   namespace: default
-  name: temporal-pv-preprod-claim
+  name: temporal-pv-prod-claim
 spec:
   accessModes:
     - ReadWriteOnce
