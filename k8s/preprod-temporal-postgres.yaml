@@ -9,15 +9,15 @@ items:
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
-        io.kompose.service: postgresql
-      name: postgresql
+        io.kompose.service: preprod-postgresql
+      name: preprod-postgresql
     spec:
       ports:
         - name: "5432"
           port: 5432
           targetPort: 5432
       selector:
-        io.kompose.service: postgresql
+        io.kompose.service: preprod-postgresql
     status:
       loadBalancer: {}
   - apiVersion: v1
@@ -70,13 +70,13 @@ items:
         kompose.version: 1.26.1 (1b040dd2)
       creationTimestamp: null
       labels:
-        io.kompose.service: postgresql
-      name: postgresql
+        io.kompose.service: preprod-postgresql
+      name: preprod-postgresql
     spec:
       replicas: 1
       selector:
         matchLabels:
-          io.kompose.service: postgresql
+          io.kompose.service: preprod-postgresql
       strategy: {}
       template:
         metadata:
@@ -87,7 +87,7 @@ items:
           creationTimestamp: null
           labels:
             io.kompose.network/preprod-temporal-network: "true"
-            io.kompose.service: postgresql
+            io.kompose.service: preprod-postgresql
         spec:
           containers:
             - env:
@@ -96,7 +96,7 @@ items:
                 - name: POSTGRES_USER
                   value: temporal
               image: "us.gcr.io/dev-qa-project-328909/paxel/temporal/preprod-postgres:13"
-              name: postgresql
+              name: preprod-postgresql
               ports:
                 - containerPort: 5432
               resources: {}
@@ -334,7 +334,7 @@ items:
                   value: "preprod-temporal:7233"
                 - name: TEMPORAL_PERMIT_WRITE_API
                   value: "true"
-              image: "us.gcr.io/dev-qa-project-328909/paxel/temporal/preprod-web:1.15.0"
+              image: "temporalio/web:1.15.0"
               name: preprod-temporal-web
               ports:
                 - containerPort: 8088
