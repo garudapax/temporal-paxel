@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  namespace: default
+  namespace: qa
   name: temporal-pv-qa
 spec:
   capacity:
@@ -23,7 +23,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  namespace: default
+  namespace: qa
   name: temporal-pv-qa-claim
 spec:
   accessModes:
