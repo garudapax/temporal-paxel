@@ -100,13 +100,13 @@ items:
                 - containerPort: 5432
               resources: {}
               volumeMounts:
-                - name: temporal-pv-claim
+                - name: temporal-pv-qa-claim
                   mountPath: /var/lib/postgresql
                   subPath: data
           volumes:
-            - name: temporal-pv-claim
+            - name: temporal-pv-qa-claim
               persistentVolumeClaim:
-                claimName: temporal-pv-claim
+                claimName: temporal-pv-qa-claim
           restartPolicy: Always
           enableServiceLinks: false
     status: {}
