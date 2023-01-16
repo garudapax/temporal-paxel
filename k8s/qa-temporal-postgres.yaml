@@ -101,7 +101,7 @@ items:
               resources: {}
               volumeMounts:
                 - name: temporal-pv-qa-claim
-                  mountPath: /var/lib/postgresql
+                  mountPath: /var/lib/postgresql/data
               workingDir: /var/lib/postgresql/data
           volumes:
             - name: temporal-pv-qa-claim
